@@ -6,6 +6,14 @@
     <title>تولیدی پوشاک بیستون | ساوه</title>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #4a69bd;
+            --accent: #e84118;
+            --bg: #f8f9fa;
+            --text: #2f3542;
+            --card-bg: #ffffff;
+        }
         * {
             box-sizing: border-box;
             margin: 0;
@@ -13,239 +21,638 @@
             font-family: 'Vazirmatn', sans-serif;
         }
         body {
-            background-color: #fafafa;
-            color: #333;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
         }
+        /* هدر و منو */
         header {
-            background: linear-gradient(135deg, #2c3e50, #4a69bd);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 20px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 15px;
         }
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: white;
+            color: var(--primary);
             font-weight: bold;
         }
-        nav a {
+        .cart-btn {
+            background: var(--accent);
             color: white;
-            text-decoration: none;
-            margin-right: 20px;
-            font-size: 0.95rem;
-            transition: opacity 0.3s;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
         }
-        nav a:hover {
-            opacity: 0.8;
+        .cart-btn:hover {
+            transform: scale(1.05);
         }
+        .badge {
+            background: white;
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+        }
+
+        /* مدیریت صفحات */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* بنر اصلی */
         .hero {
-            background: #f1f2f6;
-            padding: 60px 5%;
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(74, 105, 189, 0.85)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+            padding: 80px 5%;
             text-align: center;
-            border-bottom: 1px solid #e1e1e1;
+            border-radius: 0 0 25px 25px;
         }
         .hero h1 {
-            font-size: 2.2rem;
-            color: #2f3542;
+            font-size: 2.3rem;
             margin-bottom: 15px;
         }
         .hero p {
             font-size: 1.1rem;
-            color: #57606f;
-            max-width: 600px;
-            margin: 0 auto 25px;
+            max-width: 650px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
         }
-        .btn {
-            background-color: #e84118;
+        .cta-btn {
+            background: var(--accent);
             color: white;
-            padding: 12px 30px;
-            border-radius: 8px;
-            text-decoration: none;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 10px;
+            font-size: 1rem;
             font-weight: bold;
-            display: inline-block;
-            transition: background 0.3s;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .btn:hover {
-            background-color: #c23616;
+        .cta-btn:hover {
+            background: #c23616;
         }
-        .container {
-            padding: 50px 5%;
+
+        /* ویژگی‌ها */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
             max-width: 1200px;
-            margin: auto;
+            margin: -30px auto 40px;
+            padding: 0 5%;
+        }
+        .feature-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+        .feature-box h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* کانتینر و فیلترها */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
         }
         .section-title {
             text-align: center;
             font-size: 1.8rem;
-            margin-bottom: 40px;
-            color: #2f3542;
+            margin-bottom: 30px;
+            color: var(--primary);
         }
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        }
+        .cat-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .cat-btn {
+            background: #f1f2f6;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        .search-input {
+            padding: 9px 15px;
+            border: 1px solid #dcdde1;
+            border-radius: 8px;
+            width: 250px;
+            outline: none;
+        }
+
+        /* کارت محصولات */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 25px;
         }
         .product-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
         }
         .product-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+        }
+        .cat-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(44, 62, 80, 0.85);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
         }
         .product-img {
             width: 100%;
-            height: 280px;
+            height: 270px;
             background-color: #dfe4ea;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #747d8c;
-            font-size: 0.9rem;
+            color: #57606f;
+            font-weight: bold;
             object-fit: cover;
         }
         .product-info {
             padding: 20px;
         }
         .product-title {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: bold;
-            margin-bottom: 8px;
-            color: #2f3542;
+            margin-bottom: 6px;
         }
         .product-desc {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #747d8c;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .product-price {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: bold;
-            color: #2ed573;
+            color: #20bf6b;
             margin-bottom: 15px;
         }
-        .order-btn {
-            display: block;
-            text-align: center;
-            background: #2f3542;
-            color: white;
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-detail {
+            flex: 1;
+            background: #f1f2f6;
+            color: var(--text);
+            border: none;
             padding: 10px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: background 0.3s;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
         }
-        .order-btn:hover {
-            background: #4a69bd;
+        .btn-detail:hover {
+            background: #dfe4ea;
         }
-        .about-contact {
+        .btn-add {
+            flex: 2;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-add:hover {
+            background: var(--secondary);
+        }
+
+        /* جدول راهنمای سایز */
+        .size-table-wrapper {
             background: white;
-            padding: 40px;
-            border-radius: 12px;
+            padding: 30px;
+            border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-top: 40px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 14px;
+            border-bottom: 1px solid #f1f2f6;
+        }
+        th {
+            background: var(--primary);
+            color: white;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* صفحه درباره ما و تماس */
+        .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
-        footer {
-            background: #2f3542;
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
             color: white;
-            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* مودال‌ها (پنجره بازشو) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
             padding: 25px;
-            margin-top: 50px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #f1f2f6;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .select-group {
+            margin: 15px 0;
+        }
+        .select-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
             font-size: 0.9rem;
         }
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 10px;
-            }
-            nav a {
-                margin: 0 10px;
-            }
+        .select-group select, .select-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dcdde1;
+            border-radius: 8px;
+        }
+
+        /* آیتم‌های سبد خرید */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+        }
+        .remove-item {
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 30px 5%;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
+    <!-- هدر سایت -->
     <header>
-        <div class="logo">تولیدی پوشاک بیستون</div>
+        <div class="logo" onclick="switchPage('home')">👗 تولیدی پوشاک بیستون</div>
         <nav>
-            <a href="#products">محصولات</a>
-            <a href="#about">درباره ما</a>
-            <a href="#contact">تماس و آدرس</a>
+            <button class="nav-btn active" onclick="switchPage('home', this)">صفحه اصلی</button>
+            <button class="nav-btn" onclick="switchPage('shop', this)">فروشگاه و محصولات</button>
+            <button class="nav-btn" onclick="switchPage('size-guide', this)">راهنمای سایز</button>
+            <button class="nav-btn" onclick="switchPage('contact', this)">درباره ما و تماس</button>
         </nav>
+        <button class="cart-btn" onclick="openCart()">
+            🛒 سبد خرید <span class="badge" id="cart-count">0</span>
+        </button>
     </header>
 
-    <section class="hero">
-        <h1>تولید و پخش مستقیم پوشاک زنانه در ساوه</h1>
-        <p>جدیدترین مدل‌های مانتو، شلوار و ست‌های مجلسی و روزمره با بهترین کیفیت دوخت و قیمت مستقیم تولیدی</p>
-        <a href="#products" class="btn">مشاهده کالکشن جدید</a>
-    </section>
+    <!-- صفحه ۱: صفحه اصلی -->
+    <section id="home" class="page-section active">
+        <div class="hero">
+            <h1>تولید و پخش مستقیم پوشاک زنانه در ساوه</h1>
+            <p>خرید مستقیم از تولیدی بدون واسطه | جدیدترین کالکشن مانتو، شلوار و ست‌های مجلسی و روزمره با تضمین کیفیت دوخت و پارچه</p>
+            <button class="cta-btn" onclick="switchPage('shop')">مشاهده تمام محصولات</button>
+        </div>
 
-    <div class="container" id="products">
-        <h2 class="section-title">محصولات ویژه تولیدی بیستون</h2>
-        
-        <div class="products-grid">
-            <!-- محصول اول -->
-            <div class="product-card">
-                <div class="product-img">محل قرارگیری عکس مانتو ۱</div>
-                <div class="product-info">
-                    <div class="product-title">مانتو کتی مجلسی</div>
-                    <div class="product-desc">جنس کرپ مازراتی درجه یک | سایزبندی: ۳۸ تا ۴۶ | رنگ‌بندی متنوع</div>
-                    <div class="product-price">۶۸۰,۰۰۰ تومان</div>
-                    <a href="https://wa.me/989120000000?text=سلام، برای سفارش مانتو کتی مجلسی پیام میدم" target="_blank" class="order-btn">سفارش در واتساپ / پیام‌رسان</a>
-                </div>
+        <div class="features">
+            <div class="feature-box">
+                <h3>🏷️ قیمت مستقیم تولیدی</h3>
+                <p style="font-size: 0.9rem; color: #57606f;">حذف واسطه‌ها و خرید با مناسب‌ترین قیمت در ساوه و سراسر کشور</p>
             </div>
-
-            <!-- محصول دوم -->
-            <div class="product-card">
-                <div class="product-img">محل قرارگیری عکس شلوار ۲</div>
-                <div class="product-info">
-                    <div class="product-title">شلوار بگ پارچه‌ای</div>
-                    <div class="product-desc">تنخور عالی و بدون آبرفت | سایزبندی: ۳۶ تا ۴۴ | مشکی، کرم، طوسی</div>
-                    <div class="product-price">۴۵۰,۰۰۰ تومان</div>
-                    <a href="https://wa.me/989120000000?text=سلام، برای سفارش شلوار بگ پارچه‌ای پیام میدم" target="_blank" class="order-btn">سفارش در واتساپ / پیام‌رسان</a>
-                </div>
+            <div class="feature-box">
+                <h3>🧵 تضمین دوخت و پارچه</h3>
+                <p style="font-size: 0.9rem; color: #57606f;">استفاده از پارچه‌های درجه یک بدون آبرفت و رنگ‌دهی</p>
             </div>
-
-            <!-- محصول سوم -->
-            <div class="product-card">
-                <div class="product-img">محل قرارگیری عکس ست ۳</div>
-                <div class="product-info">
-                    <div class="product-title">ست شومیز و شلوار</div>
-                    <div class="product-desc">پارچه لنین خنک و سبک | مناسب استفاده روزمره | فری سایز</div>
-                    <div class="product-price">۷۹۰,۰۰۰ تومان</div>
-                    <a href="https://wa.me/989120000000?text=سلام، برای سفارش ست شومیز و شلوار پیام میدم" target="_blank" class="order-btn">سفارش در واتساپ / پیام‌رسان</a>
-                </div>
+            <div class="feature-box">
+                <h3>🚚 ارسال سریع</h3>
+                <p style="font-size: 0.9rem; color: #57606f;">تحویل فوری با پیک در شهر ساوه و پست پیشتاز به تمام ایران</p>
+            </div>
+            <div class="feature-box">
+                <h3>🔄 امکان تعویض سایز</h3>
+                <p style="font-size: 0.9rem; color: #57606f;">ضمانت تعویض سایز در صورت عدم تطابق با جدول سایزبندی</p>
             </div>
         </div>
 
-        <div class="about-contact" id="about">
-            <div>
-                <h3>درباره تولیدی بیستون</h3>
-                <p style="margin-top: 10px; color: #57606f;">
-                    تولیدی پوشاک بیستون با افتخار در شهر <strong>ساوه</strong> فعالیت می‌کند. هدف ما ارائه باکیفیت‌ترین پوشاک زنانه بدون واسطه و با قیمت مناسب برای همشهریان عزیز و ارسال به سراسر کشور است.
-                </p>
+        <div class="container">
+            <h2 class="section-title">پرفروش‌ترین‌های هفته</h2>
+            <div class="products-grid" id="featured-products"></div>
+        </div>
+    </section>
+
+    <!-- صفحه ۲: فروشگاه کامل -->
+    <section id="shop" class="page-section">
+        <div class="container">
+            <h2 class="section-title">کالکشن کامل پوشاک بیستون</h2>
+            
+            <div class="filter-bar">
+                <div class="cat-buttons">
+                    <button class="cat-btn active" onclick="filterProducts('all', this)">همه محصولات</button>
+                    <button class="cat-btn" onclick="filterProducts('مانتو', this)">مانتو</button>
+                    <button class="cat-btn" onclick="filterProducts('شلوار', this)">شلوار</button>
+                    <button class="cat-btn" onclick="filterProducts('ست', this)">ست و شومیز</button>
+                </div>
+                <input type="text" class="search-input" id="search-box" placeholder="جستجوی نام لباس..." onkeyup="searchProducts()">
             </div>
-            <div id="contact">
-                <h3>آدرس و اطلاعات تماس</h3>
-                <p style="margin-top: 10px; color: #57606f;">
-                    <strong>📍 آدرس:</strong> استان مرکزی، شهر ساوه، [آدرس دقیق خیابان و پلاک مغازه را اینجا بنویسید]<br>
-                    <strong>📞 تلفن تماس:</strong> ۰۹۱۲۰۰۰۰۰۰۰<br>
-                    <strong>🕒 ساعت کاری:</strong> همه‌روزه از ساعت ۹ صبح تا ۹ شب
-                </p>
+
+            <div class="products-grid" id="all-products"></div>
+        </div>
+    </section>
+
+    <!-- صفحه ۳: راهنمای سایزبندی -->
+    <section id="size-guide" class="page-section">
+        <div class="container">
+            <h2 class="section-title">جدول راهنمای انتخاب سایز</h2>
+            <div class="size-table-wrapper">
+                <p style="margin-bottom: 15px; color: #57606f;">برای انتخاب دقیق‌تر، اندازه‌های زیر را با یکی از لباس‌های راحت خود مقایسه کنید (اندازه‌ها به سانتی‌متر است):</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>سایز</th>
+                            <th>دور سینه</th>
+                            <th>دور کمر</th>
+                            <th>دور باسن</th>
+                            <th>قد آستین</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>۳۶ (S)</strong></td>
+                            <td>۸۸ - ۹۲</td>
+                            <td>۷۰ - ۷۴</td>
+                            <td>۹۴ - ۹۸</td>
+                            <td>۵۸</td>
+                        </tr>
+                        <tr>
+                            <td><strong>۳۸ (M)</strong></td>
+                            <td>۹۲ - ۹۶</td>
+                            <td>۷۴ - ۷۸</td>
+                            <td>۹۸ - ۱۰۲</td>
+                            <td>۵۹</td>
+                        </tr>
+                        <tr>
+                            <td><strong>۴۰ (L)</strong></td>
+                            <td>۹۶ - ۱۰۰</td>
+                            <td>۷۸ - ۸۲</td>
+                            <td>۱۰۲ - ۱۰۶</td>
+                            <td>۶۰</td>
+                        </tr>
+                        <tr>
+                            <td><strong>۴۲ (XL)</strong></td>
+                            <td>۱۰۰ - ۱۰۴</td>
+                            <td>۸۲ - ۸۶</td>
+                            <td>۱۰۶ - ۱۱۰</td>
+                            <td>۶۰</td>
+                        </tr>
+                        <tr>
+                            <td><strong>۴۴ (2XL)</strong></td>
+                            <td>۱۰۴ - ۱۰۸</td>
+                            <td>۸۶ - ۹۰</td>
+                            <td>۱۱۰ - ۱۱۴</td>
+                            <td>۶۱</td>
+                        </tr>
+                        <tr>
+                            <td><strong>۴۶ (3XL)</strong></td>
+                            <td>۱۰۸ - ۱۱۲</td>
+                            <td>۹۰ - ۹۴</td>
+                            <td>۱۱۴ - ۱۱۸</td>
+                            <td>۶۱</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
+    </section>
+
+    <!-- صفحه ۴: درباره ما و تماس -->
+    <section id="contact" class="page-section">
+        <div class="container">
+            <h2 class="section-title">درباره تولیدی بیستون و راه‌های ارتباطی</h2>
+            <div class="contact-grid">
+                <div class="info-card">
+                    <h3>داستان تولیدی بیستون</h3>
+                    <p style="margin-top: 15px; color: #57606f;">
+                        تولیدی پوشاک بیستون فعالیت خود را در شهر <strong>ساوه</strong> با هدف تولید پوشاک زنانه باکیفیت، خوش‌دوخت و متناسب با سلیقه بانوان ایرانی آغاز کرد. ما تمامی مراحل طراحی، برش و دوخت را با نظارت مستقیم انجام می‌دهیم تا محصولات بدون واسطه و با قیمتی منصفانه به دست مشتریان عزیز برسد.
+                    </p>
+                    <p style="margin-top: 10px; color: #57606f;">
+                        <strong>فروش عمده و تک:</strong> آماده همکاری با مغازه‌داران محترم در ساوه و سایر شهرها هستیم.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3>اطلاعات تماس و آدرس حضوری</h3>
+                    <p style="margin-top: 15px; color: #57606f;">
+                        <strong>📍 آدرس:</strong> استان مرکزی، شهر ساوه، [آدرس دقیق خیابان و پلاک مغازه را اینجا بنویسید]<br><br>
+                        <strong>📞 تلفن تماس و سفارش:</strong> ۰۹۱۲۰۰۰۰۰۰۰<br><br>
+                        <strong>🕒 ساعت کاری:</strong> همه‌روزه از ۹ صبح الی ۱۳:۳۰ و ۱۶ الی ۲۱ شب
+                    </p>
+                    <div class="social-links">
+                        <a href="https://wa.me/989120000000" target="_blank" class="social-btn" style="background: #25D366;">واتساپ</a>
+                        <a href="#" target="_blank" class="social-btn" style="background: #E1306C;">اینستاگرام</a>
+                        <a href="#" target="_blank" class="social-btn" style="background: #e67e22;">کانال ایتا / روبیکا</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- مودال جزئیات محصول و انتخاب سایز -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('product-modal')">✕</button>
+            <h3 id="modal-title" style="margin-bottom: 10px;">نام محصول</h3>
+            <p id="modal-desc" style="color: #57606f; font-size: 0.9rem; margin-bottom: 10px;"></p>
+            <div id="modal-price" style="font-size: 1.2rem; font-weight: bold; color: #20bf6b; margin-bottom: 15px;"></div>
+            
+            <div class="select-group">
+                <label>انتخاب سایز:</label>
+                <select id="modal-size">
+                    <option value="۳۸">سایز ۳۸</option>
+                    <option value="۴۰">سایز ۴۰</option>
+                    <option value="۴۲">سایز ۴۲</option>
+                    <option value="۴۴">سایز ۴۴</option>
+                    <option value="فری سایز">فری سایز</option>
+                </select>
+            </div>
+
+            <div class="select-group">
+                <label>انتخاب رنگ:</label>
+                <select id="modal-color">
+                    <option value="مشکی">مشکی</option>
+                    <option value="کرم">کرم</option>
+                    <option value="سبز یشمی">سبز یشمی</option>
+                    <option value="سرمه‌ای">سرمه‌ای</option>
+                </select>
+            </div>
+
+            <button class="cta-btn" style="width: 100%; margin-top: 10px;" onclick="confirmAddToCart()">افزودن به سبد خرید</button>
+        </div>
+    </div>
+
+    <!-- مودال سبد خرید -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('cart-modal')">✕</button>
+            <h3 style="margin-bottom: 15px;">🛒 سبد خرید شما</h3>
+            <div id="cart-items-container">
+                <p style="color: #747d8c; text-align: center;">سبد خرید شما خالی است.</p>
+            </div>
+            <div id="cart-total" style="font-weight: bold; font-size: 1.1rem; margin: 15px 0; text-align: left;"></div>
+            
+            <div class="select-group">
+                <label>نام و نام خانوادگی شما:</label>
+                <input type="text" id="customer-name" placeholder="مثلاً: سارا محمدی">
+            </div>
+            <div class="select-group">
+                <label>شهر و آدرس جهت ارسال:</label>
+                <input type="text" id="customer-address" placeholder="مثلاً: ساوه، خیابان...">
+            </div>
+
+            <button class="cta-btn" style="width: 100%; background: #25D366;" onclick="sendOrderWhatsApp()">
+                تکمیل خرید و ارسال فاکتور به واتساپ تولیدی
+            </button>
         </div>
     </div>
 
@@ -253,5 +660,225 @@
         <p>© تمامی حقوق متعلق به تولیدی پوشاک بیستون (ساوه) می‌باشد.</p>
     </footer>
 
+    <script>
+        // لیست محصولات (می‌توانید محصولات جدید را اینجا اضافه یا ویرایش کنید)
+        const products = [
+            {
+                id: 1,
+                title: "مانتو کتی مجلسی مدل بیستون",
+                category: "مانتو",
+                price: 680000,
+                desc: "جنس کرپ مازراتی درجه یک، لایی‌کشی شده، قد کار ۸۰ سانتی‌متر، مناسب مجالس و استفاده رسمی.",
+                img: "" // نام فایل عکس را اینجا بگذارید مثلاً: "manto1.jpg"
+            },
+            {
+                id: 2,
+                title: "شلوار بگ پارچه‌ای",
+                category: "شلوار",
+                price: 450000,
+                desc: "پارچه مازراتی اعلا، بدون آبرفت و چروک، قد ۱۰۵ سانتی‌متر، کمر کش و زیپ‌دار.",
+                img: ""
+            },
+            {
+                id: 3,
+                title: "ست شومیز و شلوار لنین",
+                category: "ست",
+                price: 790000,
+                desc: "پارچه لنین نچرال خنک و سبک، بسیار راحت و شیک برای استفاده روزمره و بهاره.",
+                img: ""
+            },
+            {
+                id: 4,
+                title: "مانتو عبایی مزونی",
+                category: "مانتو",
+                price: 850000,
+                desc: "جنس کرپ حریر الیزه ریزش‌دار، خرج‌کار گیپور، فری سایز (مناسب ۳۶ تا ۴۸).",
+                img: ""
+            },
+            {
+                id: 5,
+                title: "شومیز مانتویی لینن",
+                category: "ست",
+                price: 490000,
+                desc: "تنخور آزاد و اسپرت، دکمه‌خور، رنگ‌بندی کامل و شاد.",
+                img: ""
+            },
+            {
+                id: 6,
+                title: "شلوار مام استایل پارچه‌ای",
+                category: "شلوار",
+                price: 420000,
+                desc: "پارچه بنگال کشی باکیفیت، فرم‌دهی عالی، قد ۹۵ سانتی‌متر.",
+                img: ""
+            }
+        ];
+
+        // شماره واتساپ مغازه (حتما با 98 شروع شود و بدون صفر)
+        const shopPhone = "989120000000"; 
+
+        let cart = [];
+        let selectedProduct = null;
+
+        // تابع نمایش کارت محصول
+        function renderProducts(list, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = "";
+            list.forEach(p => {
+                const imgHtml = p.img 
+                    ? `<img src="${p.img}" class="product-img" alt="${p.title}">` 
+                    : `<div class="product-img">محل عکس ${p.title}</div>`;
+
+                container.innerHTML += `
+                    <div class="product-card">
+                        <span class="cat-tag">${p.category}</span>
+                        ${imgHtml}
+                        <div class="product-info">
+                            <div class="product-title">${p.title}</div>
+                            <div class="product-desc">${p.desc.substring(0, 65)}...</div>
+                            <div class="product-price">${p.price.toLocaleString()} تومان</div>
+                            <div class="card-actions">
+                                <button class="btn-detail" onclick="openProductModal(${p.id})">جزئیات</button>
+                                <button class="btn-add" onclick="openProductModal(${p.id})">انتخاب سایز و خرید</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // جابجایی بین صفحات
+        function switchPage(pageId, btnElement) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            if (btnElement) {
+                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                btnElement.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // فیلتر دسته‌بندی
+        function filterProducts(category, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            if (category === 'all') {
+                renderProducts(products, 'all-products');
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered, 'all-products');
+            }
+        }
+
+        // جستجو
+        function searchProducts() {
+            const query = document.getElementById('search-box').value.toLowerCase();
+            const filtered = products.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
+            renderProducts(filtered, 'all-products');
+        }
+
+        // باز کردن پنجره انتخاب سایز
+        function openProductModal(id) {
+            selectedProduct = products.find(p => p.id === id);
+            document.getElementById('modal-title').innerText = selectedProduct.title;
+            document.getElementById('modal-desc').innerText = selectedProduct.desc;
+            document.getElementById('modal-price').innerText = selectedProduct.price.toLocaleString() + " تومان";
+            document.getElementById('product-modal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // افزودن به سبد خرید
+        function confirmAddToCart() {
+            const size = document.getElementById('modal-size').value;
+            const color = document.getElementById('modal-color').value;
+            
+            cart.push({
+                ...selectedProduct,
+                size: size,
+                color: color,
+                cartId: Date.now()
+            });
+            
+            updateCartUI();
+            closeModal('product-modal');
+            alert("✅ محصول به سبد خرید اضافه شد!");
+        }
+
+        function updateCartUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: #747d8c; text-align: center;">سبد خرید شما خالی است.</p>';
+                totalEl.innerText = "";
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = "";
+            cart.forEach(item => {
+                total += item.price;
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.title}</strong><br>
+                            <small style="color: #57606f;">سایز: ${item.size} | رنگ: ${item.color}</small>
+                        </div>
+                        <div>
+                            <span>${item.price.toLocaleString()} ت</span>
+                            <button class="remove-item" onclick="removeFromCart(${item.cartId})">حذف</button>
+                        </div>
+                    </div>
+                `;
+            });
+            totalEl.innerText = "مبلغ کل قابل پرداخت: " + total.toLocaleString() + " تومان";
+        }
+
+        function removeFromCart(cartId) {
+            cart = cart.filter(item => item.cartId !== cartId);
+            updateCartUI();
+        }
+
+        function openCart() {
+            updateCartUI();
+            document.getElementById('cart-modal').classList.add('active');
+        }
+
+        // ارسال فاکتور نهایی به واتساپ
+        function sendOrderWhatsApp() {
+            if (cart.length === 0) {
+                alert("سبد خرید شما خالی است!");
+                return;
+            }
+            const name = document.getElementById('customer-name').value || "مشتری سایت";
+            const address = document.getElementById('customer-address').value || "تعیین نشده";
+            
+            let message = `سلام، سفارش جدید از سایت تولیدی پوشاک بیستون:\n\n`;
+            message += `👤 نام مشتری: ${name}\n`;
+            message += `📍 آدرس: ${address}\n`;
+            message += `------------------\n`;
+            
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                message += `${index + 1}. ${item.title} (سایز: ${item.size} - رنگ: ${item.color}) - ${item.price.toLocaleString()} تومان\n`;
+            });
+            
+            message += `------------------\n`;
+            message += `💰 جمع کل: ${total.toLocaleString()} تومان`;
+
+            const url = `https://wa.me/${shopPhone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // اجرای اولیه
+        renderProducts(products.slice(0, 3), 'featured-products');
+        renderProducts(products, 'all-products');
+    </script>
 </body>
 </html>
