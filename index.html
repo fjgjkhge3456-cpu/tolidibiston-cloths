@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تولیدی پوشاک بیستون | ساوه</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        body {
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #2c3e50, #4a69bd);
+            color: white;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
+        }
+        nav a:hover {
+            opacity: 0.8;
+        }
+        .hero {
+            background: #f1f2f6;
+            padding: 60px 5%;
+            text-align: center;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            color: #2f3542;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #57606f;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+        .btn {
+            background-color: #e84118;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #c23616;
+        }
+        .container {
+            padding: 50px 5%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            color: #2f3542;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-img {
+            width: 100%;
+            height: 280px;
+            background-color: #dfe4ea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #747d8c;
+            font-size: 0.9rem;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2f3542;
+        }
+        .product-desc {
+            font-size: 0.9rem;
+            color: #747d8c;
+            margin-bottom: 15px;
+        }
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2ed573;
+            margin-bottom: 15px;
+        }
+        .order-btn {
+            display: block;
+            text-align: center;
+            background: #2f3542;
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .order-btn:hover {
+            background: #4a69bd;
+        }
+        .about-contact {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        footer {
+            background: #2f3542;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">تولیدی پوشاک بیستون</div>
+        <nav>
+            <a href="#products">محصولات</a>
+            <a href="#about">درباره ما</a>
+            <a href="#contact">تماس و آدرس</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>تولید و پخش مستقیم پوشاک زنانه در ساوه</h1>
+        <p>جدیدترین مدل‌های مانتو، شلوار و ست‌های مجلسی و روزمره با بهترین کیفیت دوخت و قیمت مستقیم تولیدی</p>
+        <a href="#products" class="btn">مشاهده کالکشن جدید</a>
+    </section>
+
+    <div class="container" id="products">
+        <h2 class="section-title">محصولات ویژه تولیدی بیستون</h2>
+        
+        <div class="products-grid">
+            <!-- محصول اول -->
+            <div class="product-card">
+                <div class="product-img">محل قرارگیری عکس مانتو ۱</div>
+                <div class="product-info">
+                    <div class="product-title">مانتو کتی مجلسی</div>
+                    <div class="product-desc">جنس کرپ مازراتی درجه یک | سایزبندی: ۳۸ تا ۴۶ | رنگ‌بندی متنوع</div>
+                    <div class="product-price">۶۸۰,۰۰۰ تومان</div>
+                    <a href="https://wa.me/989120000000?text=سلام، برای سفارش مانتو کتی مجلسی پیام میدم" target="_blank" class="order-btn">سفارش در واتساپ / پیام‌رسان</a>
+                </div>
+            </div>
+
+            <!-- محصول دوم -->
+            <div class="product-card">
+                <div class="product-img">محل قرارگیری عکس شلوار ۲</div>
+                <div class="product-info">
+                    <div class="product-title">شلوار بگ پارچه‌ای</div>
+                    <div class="product-desc">تنخور عالی و بدون آبرفت | سایزبندی: ۳۶ تا ۴۴ | مشکی، کرم، طوسی</div>
+                    <div class="product-price">۴۵۰,۰۰۰ تومان</div>
+                    <a href="https://wa.me/989120000000?text=سلام، برای سفارش شلوار بگ پارچه‌ای پیام میدم" target="_blank" class="order-btn">سفارش در واتساپ / پیام‌رسان</a>
+                </div>
+            </div>
+
+            <!-- محصول سوم -->
+            <div class="product-card">
+                <div class="product-img">محل قرارگیری عکس ست ۳</div>
+                <div class="product-info">
+                    <div class="product-title">ست شومیز و شلوار</div>
+                    <div class="product-desc">پارچه لنین خنک و سبک | مناسب استفاده روزمره | فری سایز</div>
+                    <div class="product-price">۷۹۰,۰۰۰ تومان</div>
+                    <a href="https://wa.me/989120000000?text=سلام، برای سفارش ست شومیز و شلوار پیام میدم" target="_blank" class="order-btn">سفارش در واتساپ / پیام‌رسان</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-contact" id="about">
+            <div>
+                <h3>درباره تولیدی بیستون</h3>
+                <p style="margin-top: 10px; color: #57606f;">
+                    تولیدی پوشاک بیستون با افتخار در شهر <strong>ساوه</strong> فعالیت می‌کند. هدف ما ارائه باکیفیت‌ترین پوشاک زنانه بدون واسطه و با قیمت مناسب برای همشهریان عزیز و ارسال به سراسر کشور است.
+                </p>
+            </div>
+            <div id="contact">
+                <h3>آدرس و اطلاعات تماس</h3>
+                <p style="margin-top: 10px; color: #57606f;">
+                    <strong>📍 آدرس:</strong> استان مرکزی، شهر ساوه، [آدرس دقیق خیابان و پلاک مغازه را اینجا بنویسید]<br>
+                    <strong>📞 تلفن تماس:</strong> ۰۹۱۲۰۰۰۰۰۰۰<br>
+                    <strong>🕒 ساعت کاری:</strong> همه‌روزه از ساعت ۹ صبح تا ۹ شب
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© تمامی حقوق متعلق به تولیدی پوشاک بیستون (ساوه) می‌باشد.</p>
+    </footer>
+
+</body>
+</html>
